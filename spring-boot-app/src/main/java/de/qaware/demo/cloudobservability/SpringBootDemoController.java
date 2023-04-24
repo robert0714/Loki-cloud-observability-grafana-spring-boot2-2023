@@ -17,15 +17,15 @@ public class SpringBootDemoController {
 
     @PostMapping("/trigger-me")
     public String triggerMe() {
-        var sleepDuration = sleepForRandomTime();
+        Duration sleepDuration = sleepForRandomTime();
         return "Slept for " + sleepDuration;
     }
 
     private Duration sleepForRandomTime() {
         try {
-            var minSleepDuration = Duration.ofMillis(Math.round(MAX_SLEEP_TIME.toMillis() * Math.random()));
+            Duration minSleepDuration = Duration.ofMillis(Math.round(MAX_SLEEP_TIME.toMillis() * Math.random()));
             LOGGER.info("Sleeping for at least {}", minSleepDuration);
-            var start = Instant.now();
+            Instant start = Instant.now();
             Thread.sleep(minSleepDuration.toMillis());
             Duration sleptFor = Duration.between(start, Instant.now());
             LOGGER.info("Slept for {}", sleptFor);

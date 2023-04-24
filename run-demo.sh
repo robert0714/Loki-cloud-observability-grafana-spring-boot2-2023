@@ -5,7 +5,7 @@ export MINIKUBE_IN_STYLE=false
 MINIKUBE_PROFILE=observability-demo
 echo ">>>> Starting minikube with profile $MINIKUBE_PROFILE..."
 
-minikube start --profile $MINIKUBE_PROFILE --kubernetes-version=1.24.6
+minikube start --profile $MINIKUBE_PROFILE --kubernetes-version=1.24.13
 minikube profile $MINIKUBE_PROFILE
 
 echo ">>>> Building & pushing Spring Boot Demo App..."
@@ -43,5 +43,5 @@ helm_install spring-boot default spring-boot-demo-app1
 echo ">>>> Waiting max 5min for deployments to finish...(you may watch progress using k9s)"
 kubectl wait --for=condition=ready --timeout=5m pod -n kube-prometheus-stack -l app.kubernetes.io/name=grafana
 # setup port forward for grafana
-echo ">>>> Setting up port-forward (end with Ctrl-C), you can login to Grafana now at http://localhost:3000"
-kubectl port-forward -n kube-prometheus-stack deployment/kube-prometheus-stack-grafana 3000:3000
+echo ">>>> Setting up port-forward (end with Ctrl-C), you can login to Grafana now at http://localhost:3001"
+kubectl port-forward -n kube-prometheus-stack deployment/kube-prometheus-stack-grafana 3001:3000
